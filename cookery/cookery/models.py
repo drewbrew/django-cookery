@@ -9,7 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 class Ingredient(models.Model):
     '''Basic ingredient class'''
 
-    name = models.CharField(_('Name'), max_length=100)
+    name = models.CharField(_('Name'), max_length=100, unique=True)
     # TODO add nutritional data? dry/liquid measure?
 
     def __str__(self):
@@ -45,7 +45,7 @@ class RecipeIngredient(models.Model):
 
 class Recipe(models.Model):
     '''A guide used to create a food product.'''
-    name = models.CharField(_('Name'), max_length=100)
+    name = models.CharField(_('Name'), max_length=100, unique=True)
     author = models.CharField(
         _('Author'), max_length=100, blank=True, null=True)
     preparation_time = models.TimeField(
@@ -76,7 +76,7 @@ class Recipe(models.Model):
 
 class RecipeTag(models.Model):
     '''Tag used to describe a recipe, e.g. Asian or Appetizer'''
-    name = models.CharField(_('Name'), max_length=100)
+    name = models.CharField(_('Name'), max_length=100, unique=True)
 
     def __str__(self):
         return self.name
