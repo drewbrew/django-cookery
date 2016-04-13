@@ -10,6 +10,7 @@ class Ingredient(models.Model):
     '''Basic ingredient class'''
 
     name = models.CharField(_('Name'), max_length=100, unique=True)
+    notes = models.TextField(blank=True, null=True)
     # TODO add nutritional data? dry/liquid measure?
 
     def __str__(self):
@@ -32,6 +33,7 @@ class RecipeIngredient(models.Model):
         _('Means of preparation'),
         help_text=_('chopped, diced, julienned, etc.'),
         max_length=50, blank=True, null=True)
+    notes = models.TextField(blank=True, null=True)
 
     def __str__(self):
         ret = '%s %s %s %s for recipe %s' % (
@@ -65,6 +67,7 @@ class Recipe(models.Model):
         'Ingredient', help_text=_('Ingredients'),
         through='RecipeIngredient')
     instructions = models.TextField(_('Instructions'))
+    notes = models.TextField(blank=True, null=True)
     # TODO add timestamp/last modified by
 
     class Meta:
