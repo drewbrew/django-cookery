@@ -66,7 +66,8 @@ class Recipe(models.Model):
         'RecipeTag', help_text=_('Tags'), blank=True)
     ingredients = models.ManyToManyField(
         'Ingredient', help_text=_('Ingredients'),
-        through='RecipeIngredient')
+        through='RecipeIngredient',
+        related_name='recipes')
     instructions = models.TextField(_('Instructions'))
     notes = models.TextField(blank=True, null=True)
     # TODO add timestamp/last modified by
