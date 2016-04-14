@@ -62,7 +62,8 @@ class Recipe(models.Model):
     outdoor_cooking_friendly = models.BooleanField(
         _('Whether the meal is suitable for outdoor cooking'),
         default=False)
-    tags = models.ManyToManyField('RecipeTag', help_text=_('Tags'))
+    tags = models.ManyToManyField(
+        'RecipeTag', help_text=_('Tags'), blank=True)
     ingredients = models.ManyToManyField(
         'Ingredient', help_text=_('Ingredients'),
         through='RecipeIngredient')
