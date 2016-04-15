@@ -70,6 +70,13 @@ class Recipe(models.Model):
         related_name='recipes')
     instructions = models.TextField(_('Instructions'))
     notes = models.TextField(blank=True, null=True)
+    DIFFICULTY_CHOICES = (
+        (0, _('beginner')), (1, _('intermediate')), (2, _('expert')),
+        (3, _('world class')), (None, _('unknown'))
+    )
+    difficulty = models.PositiveSmallIntegerField(
+        _('Difficulty'), null=True, blank=True,
+        choices=DIFFICULTY_CHOICES)
     # TODO add timestamp/last modified by
 
     class Meta:
