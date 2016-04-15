@@ -7,5 +7,5 @@ from . import models
 
 for model in [
         models.Recipe, models.Ingredient, models.RecipeIngredient,
-        models.RecipeTag]:
+        models.RecipeTag, models.Meal, models.MealTime]:
     admin.site.register(model)
