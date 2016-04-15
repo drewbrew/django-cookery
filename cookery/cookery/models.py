@@ -85,3 +85,33 @@ class RecipeTag(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class MealTime(models.Model):
+    '''Simple container for breakfast/lunch/dinner/etc.'''
+    name = models.CharField(_('Name'), max_length=15, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Meal(models.Model):
+    '''A collection of recipes that forms a single eating occasion'''
+    name = models.CharField(_('Name'), max_length=100)
+    date = models.DateField(_('Date'), null=True, blank=True)
+    meal = models.ForeignKey('MealTime', help_text=_('Meal'), blank=True)
+    recipes = models.ManyToManyField('Recipe')
+
+    def __str__(self):
+        if self.meal:
+            if self.date:
+                return "%s: %s on %s: meals %s" % (
+                    self.name, self.meal, self.date, self.recipes)
+            return '%s: %s: meals %s' % (
+                self.name, self.meal, self.recipes)
+        elif self.date:
+            return '%s: unspecified meal on %s: meals %s' % (
+                self.name, self.date, self.recipes)
+        else:
+            return '%s: meals %s' % (
+                self.name)
