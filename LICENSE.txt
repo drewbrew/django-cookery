@@ -1,3 +1,6 @@
+Unless otherwise specified in the individual files (CSS/fonts/JS), the MIT
+License applies:
+
 The MIT License (MIT)
 
 Copyright (c) 2016 Drew Winstel.
